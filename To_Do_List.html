@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        #tarefas{
+            border: 1px solid;
+            width: 500px;
+            height: 500px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <label for="labeltarefa">Tarefa:</label><br>
+        <input type="text" name="tarefa" id="tarefa">
+        <input type="button" value="Adicionar" onclick="Enviar()">
+    </form>
+    <div id="tarefas">
+        
+    </div>
+
+    <script>
+        var tarefas = []
+        function Enviar(){
+            var add_tarefa = document.querySelector("#tarefa").value;
+            tarefas.push(add_tarefa);
+            document.querySelector("#tarefa").value = ""
+            Exibir()
+        }
+        function Exibir(){
+            var elementos = document.getElementById("tarefas");
+            var texto = ""
+
+            for(i=0;i<tarefas.length;i++) {
+                botao = '<input type="button" value="Excluir" onclick="Excluir('+i+')">' 
+                texto += `<span>Tarefa: ${tarefas[i]}</span> ${botao}<br>`;
+            }
+
+           elementos.innerHTML = texto;
+        }
+        function Excluir(posicao) {
+            console.log(posicao);
+            tarefas.splice(posicao, 1);
+            Exibir()
+        }
+    </script>
+</body>
+</html>
